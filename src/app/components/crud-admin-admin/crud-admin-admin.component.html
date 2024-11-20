@@ -1,0 +1,92 @@
+<mat-toolbar class="custom-toolbar">
+  <span>Creación usuarios de administrador</span>
+</mat-toolbar>
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+
+<mat-card>
+  <button (click)="addEditUsuarioAdmin()" mat-fab color="primary" aria-label="add" class="btnNuevo" matTooltip="Agregar">
+    <mat-icon>add</mat-icon>
+  </button>
+  
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input matInput placeholder="Buscar" (keyup)="applyFilter($event)" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="scroll-container">  <!-- Contenedor para la barra de desplazamiento -->
+      <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z9">
+        <ng-container matColumnDef="id_usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Usuario</th>
+          <td mat-cell *matCellDef="let element">{{element.id_usuario}}</td>
+        </ng-container>
+        <!-- Nombre de usuario Column -->
+        <ng-container matColumnDef="nombre_usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre del Usuario</th>
+          <td mat-cell *matCellDef="let element">{{element.nombre_usuario}}</td>
+        </ng-container>
+
+        <!-- Apellido Column -->
+        <ng-container matColumnDef="apellido_usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido del Usuario</th>
+          <td mat-cell *matCellDef="let element">{{element.apellido_usuario}}</td>
+        </ng-container>
+
+        <!-- Nombre de ingreso usuario Column -->
+        <ng-container matColumnDef="nombre_ingreso_usuario">
+          <th mat-header-cell *matHeaderCellDef>Nombre de Ingreso</th>
+          <td mat-cell *matCellDef="let element">{{element.nombre_ingreso_usuario}}</td>
+        </ng-container>
+
+        <!-- Clave Column -->
+        <ng-container matColumnDef="clave_ingreso_usuario">
+          <th mat-header-cell *matHeaderCellDef>Clave del Usuario</th>
+          <td mat-cell *matCellDef="let element">{{element.clave_ingreso_usuario}}</td>
+        </ng-container>
+        
+        <!-- Estado Column -->
+        <ng-container matColumnDef="estado_usuario">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">{{element.estado_usuario}}</td>
+        </ng-container>
+
+        <!-- ID Rol Column -->
+        <ng-container matColumnDef="id_rol">
+          <th mat-header-cell *matHeaderCellDef>ID Rol</th>
+          <td mat-cell *matCellDef="let element">{{element.id_rol}}</td>
+        </ng-container>
+
+        <!-- ID Permiso Column -->
+        <ng-container matColumnDef="id_admin_permiso">
+          <th mat-header-cell *matHeaderCellDef>ID Permiso</th>
+          <td mat-cell *matCellDef="let element">{{element.id_admin_permiso}}</td>
+        </ng-container>
+
+        <!-- Tipo de Permiso Column -->
+        <ng-container matColumnDef="tipo_permiso">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Permiso </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipo_permiso}} </td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element" class="action-buttons"> 
+            <button mat-icon-button color="primary" aria-label="Edit" (click)="editUsuarioAdmin(element)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteUsuarioAdmin(element)" matTooltip="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div> <!-- Fin del contenedor de desplazamiento -->
+    
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </mat-card-content>
+</mat-card>

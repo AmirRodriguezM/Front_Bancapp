@@ -1,0 +1,47 @@
+<div class="login-container">
+    <div class="login-box">
+        <div class="image-container">
+            <!-- Imagen del logo arriba del texto -->
+            <img src="image/banco_logo.png" alt="Logo Bancapp" class="logo_bank" />
+            <p class="image-description">
+                Accede a tu cuenta Bancapp de manera segura para gestionar tus transacciones.
+            </p>
+        </div>
+        <div class="form-container">
+            <div class="body">
+                <div class="title-container">
+                    <!-- Mantener la estrella negra -->
+                    <img src="image/user-interface.png" alt="Logo Bancapp" class="logo_interfaz">
+                    <h2>Inicio de sesión Bancapp</h2>
+                </div>
+            </div>
+            <form>
+                <div class="input-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" placeholder="Ingresa tu usuario" name="usuario" required [(ngModel)]="nombre_ingreso_usuario" />
+                </div>
+                <div class="input-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" placeholder="Ingresa tu contraseña" name="password" required [(ngModel)]="clave_ingreso_usuario" />
+                </div>
+
+                <!-- Botón con spinner sobrepuesto -->
+                <button type="button" class="btn" (click)="login()" [disabled]="isLoading" style="position: relative;">
+                    <!-- Texto del botón cambia dinámicamente -->
+                    <span *ngIf="!isLoading">Ingresar</span>
+                    <span *ngIf="isLoading">Ingresando...</span>
+
+                    <!-- Spinner sobrepuesto centrado -->
+                    <span *ngIf="isLoading" class="spinner-overlay">
+                        <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                    </span>
+                </button>
+            </form>
+
+            <div class="extra-links">
+                <a href="#">¿Has olvidado tu usuario?</a>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+    </div>
+</div>

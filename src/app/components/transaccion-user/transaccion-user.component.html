@@ -1,0 +1,38 @@
+<div mat-dialog-title>Generar Transferencia</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="transferForm" class="horizontal-form">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Monto</mat-label>
+      <input matInput formControlName="monto" placeholder="Ingresa el monto" type="number">
+      <mat-error *ngIf="transferForm.get('monto')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+      <mat-error *ngIf="transferForm.get('monto')?.hasError('min')">
+        El monto debe ser mayor que cero
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Número de Cuenta Destino</mat-label>
+        <input matInput formControlName="numero_cuenta_destino" placeholder="Número de cuenta destino">
+      </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Código de Verificación</mat-label>
+      <input matInput formControlName="codigo_verificacion" placeholder="Código de verificación">
+      <mat-error *ngIf="transferForm.get('codigo_verificacion')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="submitTransfer()" [disabled]="transferForm.invalid">
+    Generar Transferencia
+  </button>
+</div>

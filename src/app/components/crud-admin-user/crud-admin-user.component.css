@@ -1,0 +1,68 @@
+/* Asegura que el botón esté posicionado relativamente al mat-card */
+mat-card {
+    position: relative;
+    padding-top: 40px;
+}
+
+/* Estilo del botón "Añadir" para que esté en la esquina superior derecha */
+.btnNuevo {
+    position: absolute;
+    top: 40px;
+    right: 45px;
+    z-index: 1;
+    color: rgb(163, 91, 91) !important;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100% !important;
+    max-width: 100%;
+    background-color: white !important;
+    color: #333 !important;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table td,
+table th {
+    color: #333 !important;
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ccc; 
+}
+
+/* Evita que las líneas se deformen */
+table tr {
+    display: table-row;
+}
+
+/* Estilo para el campo de formulario */
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 50%;
+}
+
+/* Contenedor de los botones de acción */
+.action-buttons {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para los botones de edición y eliminación */
+.btnEdit, .btnDelete {
+    margin-right: 8px;
+    color: rgb(179, 59, 59) !important;
+}
+
+/* Contenedor de desplazamiento para la tabla */
+.scroll-container {
+    max-width: 100%; 
+    overflow-x: auto; 
+}
+
+.form-container {
+    min-width: 800px; 
+}

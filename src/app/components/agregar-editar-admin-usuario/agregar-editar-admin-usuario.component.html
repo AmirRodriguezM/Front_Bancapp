@@ -1,0 +1,126 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Usuario' : 'Registrar Usuario' }}</h2>
+<form [formGroup]="form" (ngSubmit)="addEditUsuarioAdmin()">
+  <mat-dialog-content class="mat-typography">
+    <div class="form-container">
+      <div class="form-floating mb-3">
+        <input 
+          type="text" 
+          id="nombre_usuario" 
+          formControlName="nombre_usuario" 
+          class="form-control" 
+          placeholder="Ingresar nombre" 
+          [ngClass]="{'invalid-input': form.get('nombre_usuario')?.touched && form.get('nombre_usuario')?.invalid && !isEditMode}" 
+        />
+        <label for="nombre_usuario">Nombre</label>
+        <div *ngIf="form.get('nombre_usuario')?.touched && form.get('nombre_usuario')?.invalid && !isEditMode" class="text-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <input 
+          type="text" 
+          id="apellido_usuario" 
+          formControlName="apellido_usuario" 
+          class="form-control" 
+          placeholder="Ingresar apellido" 
+          [ngClass]="{'invalid-input': form.get('apellido_usuario')?.touched && form.get('apellido_usuario')?.invalid && !isEditMode}" 
+        />
+        <label for="apellido_usuario">Apellido</label>
+        <div *ngIf="form.get('apellido_usuario')?.touched && form.get('apellido_usuario')?.invalid && !isEditMode" class="text-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <input 
+          type="text" 
+          id="nombre_ingreso_usuario" 
+          formControlName="nombre_ingreso_usuario" 
+          class="form-control" 
+          placeholder="Ingresar nombre de usuario" 
+          [ngClass]="{'invalid-input': form.get('nombre_ingreso_usuario')?.touched && form.get('nombre_ingreso_usuario')?.invalid && !isEditMode}" 
+        />
+        <label for="nombre_ingreso_usuario">Nombre de Usuario</label>
+        <div *ngIf="form.get('nombre_ingreso_usuario')?.touched && form.get('nombre_ingreso_usuario')?.invalid && !isEditMode" class="text-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <input 
+          type="password" 
+          id="clave_ingreso_usuario" 
+          formControlName="clave_ingreso_usuario" 
+          class="form-control" 
+          placeholder="Ingresar contraseña" 
+          [ngClass]="{'invalid-input': form.get('clave_ingreso_usuario')?.touched && form.get('clave_ingreso_usuario')?.invalid && !isEditMode}" 
+        />
+        <label for="clave_ingreso_usuario">Contraseña</label>
+        <div *ngIf="form.get('clave_ingreso_usuario')?.touched && form.get('clave_ingreso_usuario')?.invalid && !isEditMode" class="text-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <input 
+          type="password" 
+          id="clave_ingreso_usuario_validar" 
+          formControlName="confirmPassword" 
+          class="form-control" 
+          placeholder="Repetir contraseña" 
+          [ngClass]="{'invalid-input': form.get('confirmPassword')?.touched && form.get('confirmPassword')?.invalid && !isEditMode}" 
+        />
+        <label for="clave_ingreso_usuario_validar">Repetir Contraseña</label>
+        <div *ngIf="form.get('confirmPassword')?.touched && form.get('confirmPassword')?.invalid && !isEditMode" class="text-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <select 
+          id="tipo_usuario" 
+          formControlName="tipo_usuario" 
+          class="form-control"
+        >
+          <option value="">Seleccione un tipo</option>
+          <option value="usuario">Usuario</option>
+          <option value="administrador">Administrador</option>
+        </select>
+        <label for="tipo_usuario">Tipo de Usuario</label>
+        <div *ngIf="form.get('tipo_usuario')?.touched && form.get('tipo_usuario')?.invalid && !isEditMode" class="text-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+      
+      <div *ngIf="form.get('tipo_usuario')?.value === 'administrador'" class="form-floating mb-3">
+        <select id="admin_permiso" formControlName="id_admin_permiso" class="form-control">
+          <option value="">Seleccione un permiso</option>
+          <option value="1">Superadmin</option>
+        </select>
+        <label for="admin_permiso">Permiso de Administrador</label>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <select id="estado_usuario" formControlName="estado_usuario" class="form-control">
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+        </select>
+        <label for="estado_usuario">Estado</label>
+      </div>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button 
+      type="submit" 
+      mat-button 
+      [mat-dialog-close]="true" 
+      [disabled]="!form.valid || isLoading">
+      <span *ngIf="!isLoading">{{ isEditMode ? 'Actualizar' : 'Registrar' }}</span>
+      <span *ngIf="isLoading">Guardando...</span>
+      <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+    </button>
+  </mat-dialog-actions>
+</form>

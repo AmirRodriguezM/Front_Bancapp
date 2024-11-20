@@ -1,0 +1,106 @@
+<mat-toolbar class="custom-toolbar">
+  <span>Gestión de Cuentas de Ahorro</span>
+</mat-toolbar>
+
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<mat-card>
+  <!-- Botón para agregar una nueva cuenta de ahorro -->
+  <button (click)="addEditProductAdmin()" mat-fab color="primary" aria-label="add" class="btnNuevo" matTooltip="Agregar">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <mat-card-content>
+    <!-- Campo de filtro -->
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input matInput placeholder="Buscar" (keyup)="applyFilter($event)" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="scroll-container">
+      <!-- Tabla de cuentas de ahorro -->
+      <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z9">
+        
+        <!-- ID Cuenta de Ahorro -->
+        <ng-container matColumnDef="id_cuenta_ahorro">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Cuenta de Ahorro</th>
+          <td mat-cell *matCellDef="let element">{{ element.id_cuenta_ahorro }}</td>
+        </ng-container>
+
+        <!-- ID Usuario -->
+        <ng-container matColumnDef="Usuario.id">
+          <th mat-header-cell *matHeaderCellDef>ID Usuario</th>
+          <td mat-cell *matCellDef="let element">{{ element.Usuario?.id || 'N/A' }}</td>
+        </ng-container>
+
+        <!-- Nombre de Usuario -->
+        <ng-container matColumnDef="Usuario.nombre_usuario">
+          <th mat-header-cell *matHeaderCellDef>Nombre Usuario</th>
+          <td mat-cell *matCellDef="let element">{{ element.Usuario?.nombre_usuario || 'N/A' }}</td>
+        </ng-container>
+
+        <!-- Apellido de Usuario -->
+        <ng-container matColumnDef="Usuario.apellido_usuario">
+          <th mat-header-cell *matHeaderCellDef>Apellido Usuario</th>
+          <td mat-cell *matCellDef="let element">{{ element.Usuario?.apellido_usuario || 'N/A' }}</td>
+        </ng-container>
+
+        <!-- Número de Cuenta -->
+        <ng-container matColumnDef="numero_cuenta">
+          <th mat-header-cell *matHeaderCellDef>Número de Cuenta</th>
+          <td mat-cell *matCellDef="let element">{{ element.numero_cuenta }}</td>
+        </ng-container>
+
+        <!-- Saldo -->
+        <ng-container matColumnDef="saldo_cuenta">
+          <th mat-header-cell *matHeaderCellDef>Saldo</th>
+          <td mat-cell *matCellDef="let element">{{ element.saldo_cuenta }}</td>
+        </ng-container>
+
+        <!-- Fecha de Apertura -->
+        <ng-container matColumnDef="fecha_apertura_cuenta">
+          <th mat-header-cell *matHeaderCellDef>Fecha de Apertura</th>
+          <td mat-cell *matCellDef="let element">{{ element.fecha_apertura_cuenta | date }}</td>
+        </ng-container>
+
+        <!-- Fecha de Expiración -->
+        <ng-container matColumnDef="fecha_expiracion_cuenta">
+          <th mat-header-cell *matHeaderCellDef>Fecha de Expiración</th>
+          <td mat-cell *matCellDef="let element">
+            <!-- Si la fecha es válida, muestra la fecha con el DatePipe, si no, muestra 'N/A' -->
+            <span *ngIf="element.fecha_expiracion_cuenta; else noDate">{{ element.fecha_expiracion_cuenta | date }}</span>
+            <ng-template #noDate>N/A</ng-template>
+          </td>
+        </ng-container>
+
+        <!-- Código de Verificación -->
+        <ng-container matColumnDef="codigo_verificacion_cuenta">
+          <th mat-header-cell *matHeaderCellDef>Código de Verificación</th>
+          <td mat-cell *matCellDef="let element">{{ element.codigo_verificacion_cuenta || 'N/A' }}</td>
+        </ng-container>
+
+        <!-- Acciones (Editar y Eliminar) -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element" class="action-buttons">
+            <!-- Botón Editar -->
+            <button mat-icon-button color="primary" aria-label="Edit" (click)="addEditProductAdmin(element)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <!-- Botón Eliminar -->
+            <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteCuentaAhorro(element.id_cuenta_ahorro)" matTooltip="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Filas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <!-- Paginador de la tabla -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar página"></mat-paginator>
+  </mat-card-content>
+</mat-card>

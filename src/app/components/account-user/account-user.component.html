@@ -1,0 +1,38 @@
+<div class="wallet-container">
+    <!-- Tarjeta de Crédito -->
+    <mat-card class="credit-card">
+      <div class="wifi-icon">
+        <mat-icon>network_wifi</mat-icon><br>
+      </div>
+      <div class="card-number">{{ numeroCuentaFormateado }}</div>
+      <div class="card-info">
+        <div class="card-info-group card-holder">
+          <span>Nombre Propietario</span>
+          <strong>{{ nombreCompleto }}</strong>
+        </div>
+        <div class="card-info-group expires">
+          <span>Fecha Vencimiento</span>
+          <strong>{{ fechaVencimiento }}</strong>
+        </div>
+      </div>
+    </mat-card>
+  
+    <!-- Tarjeta de Saldo -->
+    <mat-card class="balance-card">
+      <mat-icon>account_balance</mat-icon>
+      <div class="balance-info">
+        <h3>Saldo</h3>
+        <p>Saldo en pesos Colombianos</p>
+        <strong>+$ {{ cuentaAhorro?.saldo_cuenta }}</strong>
+      </div>
+  
+      <!-- Botones de Acción en la Tarjeta de Saldo -->
+      <div class="action-buttons">
+        <button mat-raised-button class="balance-button add-balance-button" (click)="agregarSaldo()">Agregar Saldo</button>
+        <button mat-raised-button class="balance-button withdraw-balance-button" (click)="retirarSaldo()">Retirar Saldo</button>
+        <button mat-raised-button class="balance-button transaction-button" (click)="generarTransaccion()">Generar Transacción</button>
+
+      </div>
+    </mat-card>
+  </div>
+  

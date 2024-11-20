@@ -1,0 +1,226 @@
+/* Estilos básicos para la estructura del layout */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* Estilos del menú lateral */
+.menu {
+    width: 20%;
+    height: 100vh;
+    background-color: #f26486;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.3s ease;
+    text-align: center;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    z-index: 10;
+}
+
+/* Ocultar logo al colapsar el menú */
+.menu.collapsed .logo-container {
+    display: none;
+}
+
+/* Estilos del menú cuando está colapsado */
+.menu.collapsed {
+    width: 60px;
+    background-color: #f26486;
+    padding: 20px 5px;
+}
+
+/* Oculta el texto al colapsar completamente */
+.menu.collapsed .welcome-text,
+.menu.collapsed nav a .nav-text {
+    display: none;
+}
+
+/* Estilos para los enlaces en el menú */
+.menu a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+    padding: 10px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    position: relative;
+}
+
+/* Ajuste adicional para centrar íconos en el menú colapsado */
+.menu.collapsed a {
+    padding: 15px 5px;
+}
+
+/* Hover en el menú */
+.menu a:hover {
+    background-color: #d62b60;
+    color: white;
+}
+
+/* Icono de navegación */
+.nav-icon {
+    width: 32px; /* Tamaño ajustado para ser más pequeño */
+    height: 32px;
+    margin-bottom: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto de escala al pasar el cursor sobre cualquier icono de navegación */
+.menu a:hover .nav-icon {
+    transform: scale(1.2);
+}
+
+/* Tamaño del icono de la casa en el menú no colapsado */
+.menu .logo_bank {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+/* Tamaño del icono de la casa cuando el menú está colapsado */
+.menu.collapsed .logo_bank {
+    width: 40px;
+    height: 40px;
+}
+
+/* Efecto de agrandamiento al pasar el cursor solo cuando el menú no está colapsado */
+.menu .logo_bank:hover {
+    transform: scale(1.2);
+}
+
+/* Estilos para el texto de bienvenida y el nombre del usuario */
+.welcome-text {
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el panel de contenido principal */
+.panel {
+    margin-left: 20%;
+    width: 80%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Ajuste del panel cuando el menú está colapsado */
+.menu.collapsed + .panel {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+/* Estilos de la cabecera del panel */
+.header {
+    height: 50px;
+    background-color: #f7e1e1;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header span {
+    color: #333;
+}
+
+/* Contenido principal */
+#content {
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo del botón de colapso/expansión */
+.button-toggle {
+    background-color: #f26486;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 20;
+}
+
+.button-toggle:hover {
+    background-color: #d62b60;
+}
+
+/* Icono específico para el botón de toggle */
+.toggle-icon {
+    width: 10px; 
+    height: 12px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Efecto de agrandamiento para el icono de toggle al pasar el cursor */
+.button-toggle:hover .toggle-icon {
+    transform: scale(1.1);
+}
+
+/* Estilo del botón de cerrar sesión */
+.logout-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Estilos para el tooltip */
+.tooltip-text {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+/* Muestra el tooltip al pasar el cursor */
+.menu a:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Mostrar tooltip en colapsado */
+.menu.collapsed a:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    bottom: 45px;
+}

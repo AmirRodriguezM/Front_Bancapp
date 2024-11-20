@@ -1,0 +1,51 @@
+<div [class.collapsed]="isCollapsed" class="menu">
+  <img
+  src="image/casa.png"
+  alt="Logo Bancapp"
+  class="logo_bank"
+  routerLink="/dashboardAdmin/viewAdminUser"
+  matTooltip="Inicio"
+  matTooltipPosition="above"
+/>  
+  <div class="welcome-text">
+      <p>Bienvenido</p>
+      <p>{{ nombreUsuario }} {{ apellidoUsuario }}</p>
+  </div>
+  
+  <nav>
+      <a routerLink="/dashboardAdmin/viewAdminUser">
+          <img src="image/paginicio.png" alt="Inicio" class="nav-icon">
+          <span class="tooltip-text">Inicio</span>
+          <span class="nav-text">Inicio</span>
+      </a>
+      <a routerLink="/dashboardAdmin/viewCrudAdmin">
+          <img src="image/apoyo.png" alt="Creación usuarios admin" class="nav-icon">
+          <span class="tooltip-text">Admin</span>
+          <span class="nav-text">Creación admin</span>
+      </a>
+      <a routerLink="/dashboardAdmin/viewCrudUser">
+          <img src="image/usercreate.png" alt="Creación usuarios clientes" class="nav-icon">
+          <span class="tooltip-text">Clientes</span>
+          <span class="nav-text">Creación clientes</span>
+      </a>
+      <a routerLink="/dashboardAdmin/viewCrudProduct">
+          <img src="image/tarjetadebito.png" alt="Creación de cuentas de ahorro" class="nav-icon">
+          <span class="tooltip-text">Cuentas</span>
+          <span class="nav-text">Cuentas de ahorro</span>
+      </a>
+  </nav>
+</div>
+
+<div class="panel">
+  <div class="header">
+      <button (click)="toggleMenu()" class="button-toggle">
+          <img [src]="getToggleIcon()" alt="Toggle Icon" class="toggle-icon">
+      </button>
+      <span>Administrador: 👮 | 
+          <button (click)="logout()" class="logout-button">Salir</button>
+      </span>
+  </div>
+  <div id="content">
+      <router-outlet></router-outlet>
+  </div>
+</div>

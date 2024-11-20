@@ -1,0 +1,66 @@
+<div mat-dialog-title>Crear Usuario de Cliente</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="clientForm" class="horizontal-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre_usuario" placeholder="Ingresa el nombre">
+      <mat-error *ngIf="clientForm.get('nombre_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido_usuario" placeholder="Ingresa el apellido">
+      <mat-error *ngIf="clientForm.get('apellido_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="nombre_ingreso_usuario" placeholder="Nombre de usuario">
+      <mat-error *ngIf="clientForm.get('nombre_ingreso_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="clave_ingreso_usuario" placeholder="Contraseña" type="password">
+      <mat-error *ngIf="clientForm.get('clave_ingreso_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+      <mat-error *ngIf="clientForm.get('clave_ingreso_usuario')?.hasError('minlength')">
+        La contraseña debe tener al menos 6 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput formControlName="confirmar_clave_ingreso_usuario" placeholder="Confirmar contraseña" type="password">
+      <mat-error *ngIf="clientForm.get('confirmar_clave_ingreso_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+      <mat-error *ngIf="clientForm.hasError('passwordMismatch')">
+        Las contraseñas no coinciden
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado_usuario">
+        <mat-option [value]="true">Activo</mat-option>
+        <mat-option [value]="false">Inactivo</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="saveClientUser()" [disabled]="loading || clientForm.invalid">
+    {{ data ? 'Guardar Cambios' : 'Crear Cliente' }}
+  </button>
+</div>

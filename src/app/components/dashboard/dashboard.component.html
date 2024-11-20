@@ -1,0 +1,43 @@
+<!-- Menú Lateral -->
+<div [class.collapsed]="isCollapsed" class="menu">
+    <div class="logo-container">
+        <img src="image/casa.png" alt="Logo Bancapp" class="logo_bank" routerLink="/dashboardUser/viewUserUser"
+            matTooltip="Inicio" matTooltipPosition="above" />
+    </div>
+    <div class="welcome-text">
+        <p>Bienvenido</p>
+        <p>{{ nombreUsuario }} {{ apellidoUsuario }}</p>
+    </div>
+    <nav>
+        <a routerLink="/dashboardUser/viewUserUser">
+            <img src="image/paginicio.png" alt="Inicio" class="nav-icon">
+            <span class="nav-text">Inicio</span>
+            <span class="tooltip-text">Inicio</span>
+        </a>
+        <a routerLink="/dashboardUser/viewUserAccount">
+            <img src="image/impuesto.png" alt="Cuenta" class="nav-icon">
+            <span class="nav-text">Cuenta</span>
+            <span class="tooltip-text">Cuenta</span>
+        </a>
+        <a routerLink="/dashboardUser/viewUserHistorical">
+            <img src="image/documentos.png" alt="Historial" class="nav-icon">
+            <span class="nav-text">Histórico</span>
+            <span class="tooltip-text">Histórico</span>
+        </a>
+    </nav>
+</div>
+
+<!-- Panel de Contenido Principal -->
+<div class="panel">
+    <div class="header">
+        <button (click)="toggleMenu()" class="button-toggle">
+            <img [src]="getToggleIcon()" alt="Toggle Icon" class="toggle-icon">
+        </button>
+        <span>Usuario: 👤 |
+            <button (click)="logout()" class="logout-button">Salir</button>
+        </span>
+    </div>
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

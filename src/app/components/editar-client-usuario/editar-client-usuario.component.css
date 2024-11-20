@@ -1,0 +1,11 @@
+.vertical-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    padding: 8px; 
+  }
+  
+  .vertical-form mat-form-field {
+    width: 100%; 
+  }
+  

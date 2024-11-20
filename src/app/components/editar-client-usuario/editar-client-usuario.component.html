@@ -1,0 +1,75 @@
+<div mat-dialog-title>Editar Usuario de Cliente</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="editForm" class="vertical-form">
+    <!-- Campo Nombre -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre_usuario" placeholder="Ingresa el nombre">
+      <mat-error *ngIf="editForm.get('nombre_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Apellido -->
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido_usuario" placeholder="Ingresa el apellido">
+      <mat-error *ngIf="editForm.get('apellido_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Nombre de Usuario -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="nombre_ingreso_usuario" placeholder="Nombre de usuario">
+      <mat-error *ngIf="editForm.get('nombre_ingreso_usuario')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Nueva Contraseña -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nueva Contraseña</mat-label>
+      <input matInput formControlName="clave_ingreso_usuario" placeholder="Contraseña" type="password">
+      <mat-error *ngIf="editForm.get('clave_ingreso_usuario')?.hasError('minlength')">
+        La contraseña debe tener al menos 6 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Confirmar Contraseña -->
+    <mat-form-field appearance="fill">
+      <mat-label>Confirmar Nueva Contraseña</mat-label>
+      <input matInput formControlName="confirmar_clave_ingreso_usuario" placeholder="Confirmar contraseña" type="password">
+      <mat-error *ngIf="editForm.hasError('passwordMismatch')">
+        Las contraseñas no coinciden
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Estado -->
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado_usuario">
+        <mat-option [value]="'activo'">Activo</mat-option>
+        <mat-option [value]="'inactivo'">Inactivo</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Campo ID Cuenta de Ahorro -->
+    <mat-form-field appearance="fill">
+      <mat-label>ID Cuenta de Ahorro</mat-label>
+      <input matInput formControlName="id_cuenta_ahorro" placeholder="ID Cuenta de Ahorro" type="number">
+      <mat-error *ngIf="editForm.get('id_cuenta_ahorro')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="saveEditUser()" [disabled]="loading || editForm.invalid">
+    Guardar Cambios
+  </button>
+</div>

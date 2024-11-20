@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+    <span>Histórico de Transacciones Bancarias</span>
+  </mat-toolbar>
+  
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  
+  <mat-card>
+    <mat-card-content>
+      <!-- Campo de Filtro -->
+      <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput placeholder="Buscar transacción" (keyup)="applyFilter($event)" autocomplete="off">
+      </mat-form-field>
+  
+      <!-- Tabla de Transacciones Filtradas -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!loading">
+        
+        <!-- Columna Tipo de Transacción -->
+        <ng-container matColumnDef="tipo_transaccion">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Transacción </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipo_transaccion}} </td>
+        </ng-container>
+  
+        <!-- Columna Monto -->
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef> Monto </th>
+          <td mat-cell *matCellDef="let element"> {{element.monto | currency}} </td>
+        </ng-container>
+  
+        <!-- Columna Fecha de Transacción (con hora) -->
+        <ng-container matColumnDef="fecha_transaccion">
+          <th mat-header-cell *matHeaderCellDef> Fecha y Hora </th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha_transaccion | date:'yyyy-MM-dd HH:mm:ss'}} </td>
+        </ng-container>
+  
+        <!-- Columna Descripción -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef> Descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+  
+        <!-- Filas de la Tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <!-- Paginador -->
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona la página de transacciones"></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+  

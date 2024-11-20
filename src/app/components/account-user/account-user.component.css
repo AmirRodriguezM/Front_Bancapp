@@ -1,0 +1,150 @@
+.wallet-container {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.credit-card {
+    width: 370px;
+    height: 240px;
+    padding: 20px;
+    color: white;
+    border-radius: 16px;
+    background-image: url('../../../../public/image/Designer.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wifi-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-number {
+    font-size: 1.4em;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card-info-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.card-holder,
+.expires {
+    font-size: 0.8em;
+    color: #bbb;
+}
+
+.card-holder strong,
+.expires strong {
+    font-size: 1em;
+    color: white;
+}
+
+/* Tarjeta de Saldo */
+.balance-card {
+    width: 500px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.balance-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.balance-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.balance-info p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.balance-info strong {
+    font-size: 1.4em;
+    color: #4caf50;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+}
+
+button {
+    flex: 1;
+}
+
+/* Estilo común para todos los botones de acción */
+.balance-button {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    border: none; /* Sin borde */
+}
+
+/* Específicos para cada botón */
+.add-balance-button {
+    color: #3ada40 !important; 
+    background-color: #ffffff; 
+}
+
+.withdraw-balance-button {
+    color: #ff1100 !important; 
+    background-color: #ffffff; 
+}
+
+.transaction-button {
+    color: #0000ff !important; 
+    background-color: #ffffff !important;
+}
+
+/* Efectos hover */
+.add-balance-button:hover {
+    background-color: #ccffb8 !important;
+}
+
+.withdraw-balance-button:hover {
+    background-color: #ffebee !important;
+}
+
+.transaction-button:hover {
+    background-color: #e0e7ff !important;
+}

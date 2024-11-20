@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Cuenta de Ahorro' : 'Crear Cuenta de Ahorro' }}</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="addEditCuentaAhorro()" autocomplete="off">
+  <mat-dialog-content class="vertical-form">
+    
+    <!-- Campo Número de Cuenta (Obligatorio) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Número de Cuenta</mat-label>
+      <input matInput formControlName="numero_cuenta" placeholder="Número de Cuenta" type="tel" autocomplete="off" data-form-type="account">
+      <mat-error *ngIf="productForm.get('numero_cuenta')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Saldo de la Cuenta (Opcional, solo valores positivos) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Saldo de la Cuenta</mat-label>
+      <input matInput formControlName="saldo_cuenta" placeholder="Saldo de la Cuenta" type="number" min="0" autocomplete="off">
+      <mat-error *ngIf="productForm.get('saldo_cuenta')?.hasError('nonPositive')">
+        El saldo no puede ser negativo.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Fecha de Apertura (Opcional, se guarda como null si está vacío) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Apertura</mat-label>
+      <input matInput [matDatepicker]="pickerApertura" formControlName="fecha_apertura_cuenta" placeholder="Fecha de Apertura" autocomplete="off">
+      <mat-datepicker-toggle matSuffix [for]="pickerApertura"></mat-datepicker-toggle>
+      <mat-datepicker #pickerApertura></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Campo Fecha de Expiración (Opcional, se guarda como null si está vacío, solo lectura) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Expiración</mat-label>
+      <input matInput [matDatepicker]="pickerExpiracion" formControlName="fecha_expiracion_cuenta" placeholder="Fecha de Expiración" autocomplete="off" readonly>
+      <mat-datepicker-toggle matSuffix [for]="pickerExpiracion"></mat-datepicker-toggle>
+      <mat-datepicker #pickerExpiracion></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Campo Código de Verificación (Obligatorio) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Código de Verificación</mat-label>
+      <input matInput formControlName="codigo_verificacion_cuenta" placeholder="Código de Verificación" autocomplete="off">
+      <mat-error *ngIf="productForm.get('codigo_verificacion_cuenta')?.hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+    
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()" [disabled]="isLoading">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid || isLoading">
+      <span *ngIf="!isLoading">{{ isEditMode ? 'Guardar Cambios' : 'Crear Cuenta' }}</span>
+      <span *ngIf="isLoading">Guardando...</span>
+    </button>
+  </mat-dialog-actions>
+</form>

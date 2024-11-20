@@ -1,0 +1,185 @@
+/* General Reset */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Estilos del cuerpo */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d62b60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+/* Contenedor del login */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../image/pexels-pixabay-459301.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.login-box {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: auto;
+}
+
+
+/* Contenedor de imagen */
+
+.image-container {
+    background-color: #f26486;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    flex-direction: column;
+    /* Añadido para organizar elementos verticalmente */
+}
+
+.image-container h3 {
+    color: white;
+    font-size: 40px;
+    margin: 20px 0 0 0;
+    /* Añadido margen superior */
+}
+
+
+/* Ajustes para el logo de registro */
+
+.logo_registrar {
+    height: 300px;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.logo_registrar:hover {
+    transform: scale(1.1);
+}
+
+
+/* Contenedor del formulario */
+
+.form-container {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+/* Estilos del botón */
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #f26486;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.btn:hover {
+    background-color: #d62b60;
+}
+
+
+/* Estilo del spinner */
+
+.spinner-grow-sm {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 10px;
+}
+
+
+/* Botón deshabilitado con spinner */
+
+button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+
+/* Botón secundario */
+
+.btn-secondary {
+    background-color: #f26486;
+}
+
+.btn-secondary:hover {
+    background-color: #f26486;
+}
+
+
+/* Adaptación a pantallas más pequeñas */
+
+@media (max-width: 768px) {
+    .login-box {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    .image-container,
+    .form-container {
+        width: 100%;
+    }
+}
+
+.image-description_registro {
+    color: white;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 15px;
+    /* Separación entre imagen y texto */
+}
